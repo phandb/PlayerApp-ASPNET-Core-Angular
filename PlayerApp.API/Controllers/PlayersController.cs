@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PlayerApp.API.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PlayerApp.API.Controllers
 {
     //http://localhost:5000/api/
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PlayersController : ControllerBase
@@ -33,6 +35,7 @@ namespace PlayerApp.API.Controllers
         }
 
         // GET api/players/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public  async Task<IActionResult> GetPlayer(int id)
         {
