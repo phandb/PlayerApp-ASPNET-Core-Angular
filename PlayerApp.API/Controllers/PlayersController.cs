@@ -26,6 +26,7 @@ namespace PlayerApp.API.Controllers
         //accessable at a time.  That is not really convenient.
         //We have to convert to asynschronous methods so that many users
         //can access a method at the same time.
+         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetPlayers()
         {
