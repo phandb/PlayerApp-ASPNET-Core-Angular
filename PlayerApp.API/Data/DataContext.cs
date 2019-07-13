@@ -10,5 +10,7 @@ namespace PlayerApp.API.Data
         public DbSet<Player> Players {get; set;}
 
         public DbSet<User> Users {get; set;}
+
+        public DbSet<Photo> Photos { get; set; }
     }
 }
