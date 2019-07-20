@@ -14,6 +14,9 @@ namespace PlayerApp.API.Models
 
         public bool IsMain { get; set; }
 
+        // Store id key from cloudinary
+        public string PublicId { get; set; }
+
         //Define Many-To-One relationship b/t Photo and User
         public User User { get; set; }
 
