@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using PlayerApp.API.Data;
 using PlayerApp.API.Dtos;
 using PlayerApp.API.Models;
+using AutoMapper;
 
 namespace PlayerApp.API.Controllers
 {
@@ -21,8 +22,11 @@ namespace PlayerApp.API.Controllers
 
         private readonly IConfiguration _config;
 
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        private readonly IMapper _mapper;
+
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
             _config = config;
         }
@@ -79,8 +83,11 @@ namespace PlayerApp.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
+
             return Ok(new {
-                token = tokenHandler.WriteToken(token)
+                token = tokenHandler.WriteToken(token),
+                user 
             });
         }
         
